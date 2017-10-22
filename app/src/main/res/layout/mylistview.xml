@@ -3,9 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="?android:attr/listPreferredItemHeight"
-    android:background="@color/colorPrimary"
     android:padding="6dip"
-    android:theme="@style/Base.AlertDialog.AppCompat.Light"
     android:visibility="visible">
 
     <ImageView
@@ -23,12 +21,12 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/icon"
-        android:background="@color/common_google_signin_btn_text_light_disabled"
+        android:elevation="1dp"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
         android:paddingBottom="10dp"
         android:text="Omurbek"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         android:visibility="visible" />
 
@@ -41,7 +39,7 @@
         android:layout_centerVertical="true"
         android:gravity="center_vertical"
         android:text="+996771333076"
-        android:textColor="@android:color/white"
+        android:textColor="@color/common_google_signin_btn_text_light_focused"
         android:textSize="16sp" />
 
 </RelativeLayout>

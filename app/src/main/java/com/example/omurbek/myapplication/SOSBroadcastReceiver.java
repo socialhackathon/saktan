@@ -127,7 +127,7 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
             Toast.makeText(context.getApplicationContext(), "Message Sent",
                     Toast.LENGTH_LONG).show();
-            ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(5000);
+            ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(2000);
         } catch (Exception ex) {
             Toast.makeText(context.getApplicationContext(), ex.getMessage().toString(),
                     Toast.LENGTH_LONG).show();

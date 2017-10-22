@@ -35,6 +35,9 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
     protected static final int TRIGGER_THRESHOLD = 3;
     protected static boolean triggerInProgress = false;
 
+    public static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_3";
+
+
     protected static int triggerCounter = 0;
 
     // TODO Locations
@@ -66,7 +69,7 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
             triggerCounter = 0;
         }
 
-        if (triggerCounter > TRIGGER_THRESHOLD) {
+        if (triggerCounter >= TRIGGER_THRESHOLD) {
             triggerInProgress = true;
             Log.i("triggerInProgress", triggerCounter + "");
 
@@ -76,9 +79,6 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
             toastMessage.setTextColor(Color.RED);
             toast.show();
 
-
-//            Toast.makeText(context.getApplicationContext(), "EMERGENCYYYYYYY", Toast.LENGTH_LONG).setTextColor().show();
-//toastMessage.setTextColor(Color.RED);
             getLastLocation(context);
             triggerInProgress = false;
             triggerCounter = 0;
@@ -97,23 +97,20 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
                             String latitude = String.valueOf(mLastLocation.getLatitude());
                             String longitude = String.valueOf(mLastLocation.getLongitude());
 //                            TODO check if sms is working with the location
-
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-//                            SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-                            String key = "omurbek-android-app", value = "+996771333076";
+                            String contacts = preferences.getString(APP_PREFERENCE_KEY, null);
+                            Log.i("my_key_key", APP_PREFERENCE_KEY);
 
-
-                            if (preferences.getString(key, null) == null) {
-                                preferences.edit().putString(key, value).commit();
-                                preferences.edit().putString(key+"2", "+996772137791").commit();
-                            }
-                            String phoneNumber = preferences.getString(key, null);
-                            String mederPhone = preferences.getString(key+"2", null);
-                            Log.i("phoneSharedPreferences", phoneNumber);
-                            if (phoneNumber != null) {
-                                sendSMS(context, phoneNumber, latitude, longitude);
-                                sendSMS(context, mederPhone, latitude, longitude);
-                            }else{
+                            if (contacts.length() > 0) {
+                                String[] contactList = contacts.split(",");
+                                for (int i = 0; i < contactList.length; i++) {
+                                    String[] contact = contactList[i].split("#");
+                                    String contactName = contact[0];
+                                    if (contact.length < 2) continue;
+                                    String contactNumber = contact[1];
+                                    sendSMS(context, contactNumber, latitude, longitude);
+                                }
+                            } else {
                                 Log.i("phoneSharedPreferences", "can not read phone number");
                             }
                         } else {
@@ -122,9 +119,9 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
                     }
                 });
     }
-//     http://maps.google.com/?q=42.8111227,74.6273123
+
     public void sendSMS(Context context, String phoneNo, String latitude, String longitude) {
-      String msg = "SOS!!!\t" + "http://maps.google.com/?q=" + latitude +","+longitude;
+        String msg = "SOS!!!\t" + "http://maps.google.com/?q=" + latitude + "," + longitude;
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);

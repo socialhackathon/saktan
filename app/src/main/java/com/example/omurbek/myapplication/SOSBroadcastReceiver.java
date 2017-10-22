@@ -1,24 +1,23 @@
-package newfusedlocationclient;
+package com.example.omurbek.myapplication;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-
-import java.util.Date;
 
 /**
  * Created by omurbek on 10/21/2017.
@@ -71,20 +70,17 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
             triggerInProgress = true;
             Log.i("triggerInProgress", triggerCounter + "");
 
-            Toast.makeText(context.getApplicationContext(), "EMERGENCYYYYYYY", Toast.LENGTH_LONG).show();
-//            sendSMS(context, "+996771333076", triggerCounter+" # "+new Date().toString());
+            Toast toast = Toast.makeText(context.getApplicationContext(), "Emergency!!!",
+                    Toast.LENGTH_SHORT);
+            TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
+            toastMessage.setTextColor(Color.RED);
+            toast.show();
 
+
+//            Toast.makeText(context.getApplicationContext(), "EMERGENCYYYYYYY", Toast.LENGTH_LONG).setTextColor().show();
+//toastMessage.setTextColor(Color.RED);
             getLastLocation(context);
             triggerInProgress = false;
-
-//            new android.os.Handler().postDelayed(
-//                    new Runnable() {
-//                        public void run() {
-//                            triggerInProgress = false;
-//                            Log.i("tag", "This'll run 300 milliseconds later");
-//                        }
-//                    },
-//                    5000);
             triggerCounter = 0;
         }
     }

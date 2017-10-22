@@ -1,15 +1,19 @@
 package com.example.omurbek.myapplication;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,12 +32,12 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int RESULT_PICK_CONTACT = 4546;
+    private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     private static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_2";
     SharedPreferences preferences;
     private ListView selectedContactList;
     ListView listView;
     List<RowItem> rowItems;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//        TODO
+//        startService(new Intent(this, SOSService.class));
     }
 
     private void updateContactList() {
@@ -87,13 +94,10 @@ public class MainActivity extends AppCompatActivity
             RowItem item = new RowItem(contact[0], contact[1], photoUri);
             rowItems.add(item);
         }
-//        final ArrayAdapter adapter = new ArrayAdapter(this,
-//                android.R.layout.simple_list_item_1, list);
 
         CustomListViewAdapter adapter = new CustomListViewAdapter(this,
                 R.layout.mylistview, rowItems);
         selectedContactList.setAdapter(adapter);
-//        listView.setOnItemClickListener(this);
         selectedContactList.setAdapter(adapter);
     }
 
@@ -213,4 +217,5 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

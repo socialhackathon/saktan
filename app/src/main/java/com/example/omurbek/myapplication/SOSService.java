@@ -1,4 +1,4 @@
-package newfusedlocationclient;
+package com.example.omurbek.myapplication;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 
+import com.example.omurbek.myapplication.SOSBroadcastReceiver;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
 /**

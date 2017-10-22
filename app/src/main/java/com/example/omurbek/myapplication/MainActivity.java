@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Контакт выбран", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Выберите контакт", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);

@@ -1,34 +1,57 @@
 package com.example.omurbek.myapplication;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final int RESULT_PICK_CONTACT = 4546;
+    private static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_1";
+    SharedPreferences preferences;
+    private ListView selectedContactList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        selectedContactList = (ListView) findViewById(R.id.selectedContactList);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Picking contact", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+                intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+                startActivityForResult(intent, RESULT_PICK_CONTACT);
+                Log.i("mememe", "AFTer contact Picked");
             }
         });
 
@@ -41,6 +64,85 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    private void updateContactList() {
+        ArrayList<String> list = new ArrayList<String>();
+        String contacts = preferences.getString(APP_PREFERENCE_KEY, "");
+        if (contacts.length() < 1) return;
+        String[] contactList = contacts.split(",");
+
+        Log.i("updateContactList", contacts);
+
+        for (int i = 0; i < contactList.length; i++) {
+            String[] contact = contactList[i].split("#");
+            Log.i("inarray" + i, contactList[i] + " = " + contact[0] + " - " + contactList[i].split("#"));
+            String contactName = contact[0];
+            String contactNumber = contact[1];
+            list.add(contactName + " ### " + contactNumber);
+        }
+        final ArrayAdapter adapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1, list);
+        selectedContactList.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("onActivityResult", data.getData().toString());
+        Log.i("onActivityResult", requestCode + "");
+        Log.i("onActivityResult", resultCode + "");
+        // check whether the result is ok
+        if (resultCode == RESULT_OK) {
+            // Check for the request code, we might be usign multiple startActivityForReslut
+            switch (requestCode) {
+                case RESULT_PICK_CONTACT:
+                    contactPicked(data);
+                    break;
+            }
+        } else {
+            Log.e("MainActivity", "Failed to pick contact");
+        }
+    }
+
+    /**
+     * Query the Uri and read contact details. Handle the picked contact data.
+     *
+     * @param data
+     */
+    private void contactPicked(Intent data) {
+        Log.i("contactPicked", data.getDataString());
+        Cursor cursor = null;
+        try {
+            String phoneNo = null;
+            String name = null;
+            Uri uri = data.getData();
+            cursor = getContentResolver().query(uri, null, null, null, null);
+            cursor.moveToFirst();
+            int phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+            phoneNo = cursor.getString(phoneIndex);
+            name = cursor.getString(nameIndex);
+
+            saveContact(phoneNo, name, "");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveContact(String phoneNo, String name, String s) {
+        Log.i("CONTACT", name + " ## " + phoneNo);
+        String phoneNumbers = preferences.getString(APP_PREFERENCE_KEY, "");
+
+        if (phoneNumbers.indexOf(phoneNo) == -1 && phoneNumbers.indexOf(name) == -1) {
+            phoneNumbers = phoneNumbers + name + "#" + phoneNo + ",";
+            preferences.edit().putString(APP_PREFERENCE_KEY, phoneNumbers).commit();
+            Log.i(APP_PREFERENCE_KEY, phoneNumbers);
+            Log.i("updatecantata", phoneNumbers);
+            updateContactList();
+        }
+
+    }
+
 
     @Override
     public void onBackPressed() {

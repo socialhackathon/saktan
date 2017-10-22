@@ -73,7 +73,7 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
             triggerInProgress = true;
             Log.i("triggerInProgress", triggerCounter + "");
 
-            Toast toast = Toast.makeText(context.getApplicationContext(), "Emergency!!!",
+            Toast toast = Toast.makeText(context.getApplicationContext(), "Тревога!!!",
                     Toast.LENGTH_SHORT);
             TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
             toastMessage.setTextColor(Color.RED);
@@ -125,7 +125,7 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
         try {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
-            Toast.makeText(context.getApplicationContext(), "Message Sent",
+            Toast.makeText(context.getApplicationContext(), "Отправлено",
                     Toast.LENGTH_LONG).show();
             ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(2000);
         } catch (Exception ex) {

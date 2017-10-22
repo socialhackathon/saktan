@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final int RESULT_PICK_CONTACT = 4546;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
-    public static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_3";
+    public static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_5";
     SharedPreferences preferences;
     private ListView selectedContactList;
     List<RowItem> rowItems;
@@ -50,12 +50,13 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         selectedContactList = (ListView) findViewById(R.id.selectedContactList);
 
+        updateContactList();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Picking contact", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Контакт выбран", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
@@ -320,7 +321,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+//            Intent intent = new Intent(this, HotLine.class);
+//            this.startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

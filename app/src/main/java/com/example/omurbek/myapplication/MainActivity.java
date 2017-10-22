@@ -19,18 +19,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int RESULT_PICK_CONTACT = 4546;
-    private static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_1";
+    private static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_2";
     SharedPreferences preferences;
     private ListView selectedContactList;
+    ListView listView;
+    List<RowItem> rowItems;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity
 
     private void updateContactList() {
         ArrayList<String> list = new ArrayList<String>();
+        rowItems = new ArrayList<RowItem>();
         String contacts = preferences.getString(APP_PREFERENCE_KEY, "");
         if (contacts.length() < 1) return;
         String[] contactList = contacts.split(",");
@@ -75,13 +79,21 @@ public class MainActivity extends AppCompatActivity
 
         for (int i = 0; i < contactList.length; i++) {
             String[] contact = contactList[i].split("#");
-            Log.i("inarray" + i, contactList[i] + " = " + contact[0] + " - " + contactList[i].split("#"));
+            Log.i("inarray" + i, contactList[i] + " =>> " + contact[0] + " - " + contact[1] + " -- " + contact[2]);
             String contactName = contact[0];
             String contactNumber = contact[1];
-            list.add(contactName + " ### " + contactNumber);
+            String photoUri = contact[2];
+            list.add(contactName + " ### " + contactNumber + " photo : " + photoUri);
+            RowItem item = new RowItem(contact[0], contact[1], photoUri);
+            rowItems.add(item);
         }
-        final ArrayAdapter adapter = new ArrayAdapter(this,
-                android.R.layout.simple_list_item_1, list);
+//        final ArrayAdapter adapter = new ArrayAdapter(this,
+//                android.R.layout.simple_list_item_1, list);
+
+        CustomListViewAdapter adapter = new CustomListViewAdapter(this,
+                R.layout.mylistview, rowItems);
+        selectedContactList.setAdapter(adapter);
+//        listView.setOnItemClickListener(this);
         selectedContactList.setAdapter(adapter);
     }
 
@@ -114,35 +126,36 @@ public class MainActivity extends AppCompatActivity
         try {
             String phoneNo = null;
             String name = null;
+            long photoUri;
             Uri uri = data.getData();
             cursor = getContentResolver().query(uri, null, null, null, null);
             cursor.moveToFirst();
             int phoneIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
             int nameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
+            int photo = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI);
             phoneNo = cursor.getString(phoneIndex);
             name = cursor.getString(nameIndex);
+            photoUri = cursor.getLong(photo);
 
-            saveContact(phoneNo, name, "");
+            saveContact(phoneNo, name, photoUri);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void saveContact(String phoneNo, String name, String s) {
+    private void saveContact(String phoneNo, String name, Long photo) {
         Log.i("CONTACT", name + " ## " + phoneNo);
         String phoneNumbers = preferences.getString(APP_PREFERENCE_KEY, "");
 
         if (phoneNumbers.indexOf(phoneNo) == -1 && phoneNumbers.indexOf(name) == -1) {
-            phoneNumbers = phoneNumbers + name + "#" + phoneNo + ",";
+            phoneNumbers = phoneNumbers + name + "#" + phoneNo + "#" + photo + ",";
             preferences.edit().putString(APP_PREFERENCE_KEY, phoneNumbers).commit();
             Log.i(APP_PREFERENCE_KEY, phoneNumbers);
             Log.i("updatecantata", phoneNumbers);
             updateContactList();
         }
-
     }
-
 
     @Override
     public void onBackPressed() {

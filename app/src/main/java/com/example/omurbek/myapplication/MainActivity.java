@@ -25,7 +25,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -38,10 +40,10 @@ public class MainActivity extends AppCompatActivity
 
     private static final int RESULT_PICK_CONTACT = 4546;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
-    public static final String APP_PREFERENCE_KEY = "Jacho_Team";
     SharedPreferences preferences;
     private ListView selectedContactList;
     List<RowItem> rowItems;
+    DatabaseHandler contactDB = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +53,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         selectedContactList = (ListView) findViewById(R.id.selectedContactList);
-
-        updateContactList();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +76,37 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Switch securityAgency = (Switch) findViewById(R.id.security_agency);
+        securityAgency.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Log.i("SECURITY_ENABLED", "TRUE");
+                } else {
+                    Log.i("SECURITY_ENABLED", "FALSE");
+                }
+            }
+        });
+
 //        TODO
-     //   startService(new Intent(this, SOSService.class));
+        //   startService(new Intent(this, SOSService.class));
+
+//        TODO RETRIEVES CONTACTS FROM SQLITE
+        updateContactList();
+
+        selectedContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = selectedContactList.getItemAtPosition(position);
+                Log.i("CONTACT_SELECTED", o.toString());
+                Contact str = (Contact) o; //As you are using Default String Adapter
+                Log.i("CONTACT_SELECTED_CO", str.toString());
+            }
+        });
+
+    }
+
+    public void removeSelectedContact() {
+
     }
 
     @Override
@@ -197,29 +226,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void updateContactList() {
-        ArrayList<String> list = new ArrayList<String>();
-        rowItems = new ArrayList<RowItem>();
-        String contacts = preferences.getString(APP_PREFERENCE_KEY, "");
-        if (contacts.length() < 1) return;
-        String[] contactList = contacts.split(",");
-
-        Log.i("updateContactList", contacts);
-
-        for (int i = 0; i < contactList.length; i++) {
-            String[] contact = contactList[i].split("#");
-            Log.i("inarray" + i, contactList[i] + " =>> " + contact[0] + " - " + contact[1] + " -- " + contact[2]);
-            String contactName = contact[0];
-            String contactNumber = contact[1];
-            String photoUri = contact[2];
-            list.add(contactName + " ### " + contactNumber + " photo : " + photoUri);
-            RowItem item = new RowItem(contact[0], contact[1], photoUri);
-            rowItems.add(item);
-        }
-
-//        ListView contactListView = (ListView)  findViewById(R.layout.mylistview);
+        List<Contact> contacts = contactDB.getAllContacts();
 
         CustomListViewAdapter adapter = new CustomListViewAdapter(this,
-                R.layout.mylistview, rowItems);
+                R.layout.mylistview, contacts);
 
         selectedContactList.setAdapter(adapter);
 
@@ -233,7 +243,6 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getBaseContext(), item.toString(), Toast.LENGTH_LONG).show();
             }
         });
-
 
     }
 
@@ -276,24 +285,28 @@ public class MainActivity extends AppCompatActivity
             name = cursor.getString(nameIndex);
             photoUri = cursor.getInt(photo);
 
-            saveContact(phoneNo, name, photoUri);
+            saveContactToDB(phoneNo, name, photoUri);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void saveContact(String phoneNo, String name, Long photo) {
-        Log.i("CONTACT", name + " ## " + phoneNo);
-        String phoneNumbers = preferences.getString(APP_PREFERENCE_KEY, "");
+    private void saveContactToDB(String phoneNo, String name, Long photo) {
+        boolean contactExistsInDb = false;
+        List<Contact> contacts = contactDB.getAllContacts();
+        for (Contact cn : contacts) {
+            if (cn.getName().equals(name.trim())) {
+                contactExistsInDb = true;
+                break;
+            }
+        }
 
-        if (phoneNumbers.indexOf(phoneNo) == -1 && phoneNumbers.indexOf(name) == -1) {
-            phoneNumbers = phoneNumbers + name + "#" + phoneNo + "#" + photo + ",";
-            preferences.edit().putString(APP_PREFERENCE_KEY, phoneNumbers).commit();
-            Log.i(APP_PREFERENCE_KEY, phoneNumbers);
-            Log.i("updatecantata", phoneNumbers);
+        if (!contactExistsInDb) {
+            contactDB.addContact(new Contact(name, phoneNo));
             updateContactList();
         }
+
     }
 
     @Override

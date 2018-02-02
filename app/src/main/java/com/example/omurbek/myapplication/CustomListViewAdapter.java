@@ -15,13 +15,13 @@ import java.util.List;
 /**
  * Created by omurbek on 10/22/2017.
  */
-public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
+public class CustomListViewAdapter extends ArrayAdapter<Contact> {
 
     Context context;
 
     public CustomListViewAdapter(Context context, int resourceId,
-                                 List<RowItem> items) {
-        super(context, resourceId, items);
+                                 List<Contact> contacts) {
+        super(context, resourceId, contacts);
         this.context = context;
     }
 
@@ -34,7 +34,7 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
-        RowItem rowItem = getItem(position);
+        Contact contact = getItem(position);
 
         LayoutInflater mInflater = (LayoutInflater) context
                 .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
@@ -48,9 +48,9 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
         } else
             holder = (ViewHolder) convertView.getTag();
 
-        holder.contactName.setText(rowItem.getName());
-        holder.contactNumber.setText(rowItem.getPhone());
-    //    holder.imageView.setImageResource(Integer.parseInt(rowItem.getImage()));
+        holder.contactName.setText(contact.getName());
+        holder.contactNumber.setText(contact.getPhoneNumber());
+        //    holder.imageView.setImageResource(Integer.parseInt(Contact.getImage()));
         holder.imageView.setImageResource(R.drawable.ic_account_circle_black_24dp);
 
         return convertView;

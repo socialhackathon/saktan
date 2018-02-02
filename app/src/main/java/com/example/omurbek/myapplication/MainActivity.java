@@ -1,6 +1,7 @@
 package com.example.omurbek.myapplication;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -18,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -28,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -92,20 +95,26 @@ public class MainActivity extends AppCompatActivity
 
 //        TODO RETRIEVES CONTACTS FROM SQLITE
         updateContactList();
-
-        selectedContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = selectedContactList.getItemAtPosition(position);
-                Log.i("CONTACT_SELECTED", o.toString());
-                Contact str = (Contact) o; //As you are using Default String Adapter
-                Log.i("CONTACT_SELECTED_CO", str.toString());
-            }
-        });
-
     }
 
-    public void removeSelectedContact() {
+    public void removeSelectedContact(View view) {
+
+        TextView textView = view.findViewById(R.id.myname);
+        Log.i("contact_clicked", String.valueOf(textView.getText()));
+        final String contactName = textView.getText().toString();
+        new AlertDialog.Builder(this)
+                .setTitle("Контакт")
+                .setMessage("Вы хотите удалить " + contactName + " из списка?")
+                .setIcon(android.R.drawable.ic_menu_delete)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        contactDB.deleteContactByName(contactName);
+                        Toast.makeText(MainActivity.this, "Контакт удален", Toast.LENGTH_SHORT).show();
+                        updateContactList();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null).show();
 
     }
 
@@ -206,7 +215,6 @@ public class MainActivity extends AppCompatActivity
                 Log.i(TAG, "User SMS was cancelled.");
             }
         }
-
     }
 
 
@@ -227,29 +235,14 @@ public class MainActivity extends AppCompatActivity
 
     private void updateContactList() {
         List<Contact> contacts = contactDB.getAllContacts();
-
         CustomListViewAdapter adapter = new CustomListViewAdapter(this,
                 R.layout.mylistview, contacts);
-
         selectedContactList.setAdapter(adapter);
-
-        selectedContactList.setClickable(true);
-        selectedContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = selectedContactList.getItemAtPosition(position);
-                RowItem item = (RowItem) o; //As you are using Default String Adapter
-                Log.i("itemclicked", item.toString());
-                Toast.makeText(getBaseContext(), item.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("onActivityResult", data.getData().toString());
-        Log.i("onActivityResult", requestCode + "");
         Log.i("onActivityResult", resultCode + "");
         // check whether the result is ok
         if (resultCode == RESULT_OK) {

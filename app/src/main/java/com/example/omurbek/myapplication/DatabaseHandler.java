@@ -1,4 +1,5 @@
 package com.example.omurbek.myapplication;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -142,4 +143,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
+    public void deleteContactByName(String contactName) {
+        List<Contact> contacts = getAllContacts();
+        for (Contact cn : contacts) {
+            if (cn.getName().equals(contactName)) {
+                deleteContact(cn);
+                break;
+            }
+        }
+    }
 }

@@ -35,7 +35,7 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
     protected static final int TRIGGER_THRESHOLD = 3;
     protected static boolean triggerInProgress = false;
 
-    public static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_3";
+    public static final String APP_PREFERENCE_KEY = "Jacho_Team";
 
 
     protected static int triggerCounter = 0;
@@ -100,15 +100,18 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
                             String contacts = preferences.getString(APP_PREFERENCE_KEY, null);
                             Log.i("my_key_key", APP_PREFERENCE_KEY);
+                            if(contacts==null){
+                                Log.i("contacts", " null dsafsdf");
+                            }
 
-                            if (contacts.length() > 0) {
+                            if (contacts!=null && contacts.length() > 0) {
                                 String[] contactList = contacts.split(",");
                                 for (int i = 0; i < contactList.length; i++) {
                                     String[] contact = contactList[i].split("#");
                                     String contactName = contact[0];
                                     if (contact.length < 2) continue;
                                     String contactNumber = contact[1];
-                                    sendSMS(context, contactNumber, latitude, longitude);
+//                                    sendSMS(context, contactNumber, latitude, longitude);
                                 }
                             } else {
                                 Log.i("phoneSharedPreferences", "can not read phone number");
@@ -123,6 +126,7 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
     public void sendSMS(Context context, String phoneNo, String latitude, String longitude) {
         String msg = "SOS!!!\t" + "http://maps.google.com/?q=" + latitude + "," + longitude;
         try {
+            Log.i("sos", msg);
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, msg, null, null);
             Toast.makeText(context.getApplicationContext(), "Отправлено",

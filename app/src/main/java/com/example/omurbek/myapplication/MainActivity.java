@@ -24,7 +24,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final int RESULT_PICK_CONTACT = 4546;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
-    public static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_5";
+    public static final String APP_PREFERENCE_KEY = "Jacho_Team";
     SharedPreferences preferences;
     private ListView selectedContactList;
     List<RowItem> rowItems;
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 //        TODO
-        startService(new Intent(this, SOSService.class));
+     //   startService(new Intent(this, SOSService.class));
     }
 
     @Override
@@ -170,8 +172,7 @@ public class MainActivity extends AppCompatActivity
                             }
                         });
             }
-        }
-        else if(requestCode == 45){
+        } else if (requestCode == 45) {
             if (grantResults.length <= 0) {
                 Log.i(TAG, "User SMS was cancelled.");
             }
@@ -215,10 +216,25 @@ public class MainActivity extends AppCompatActivity
             rowItems.add(item);
         }
 
+//        ListView contactListView = (ListView)  findViewById(R.layout.mylistview);
+
         CustomListViewAdapter adapter = new CustomListViewAdapter(this,
                 R.layout.mylistview, rowItems);
+
         selectedContactList.setAdapter(adapter);
-        selectedContactList.setAdapter(adapter);
+
+        selectedContactList.setClickable(true);
+        selectedContactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Object o = selectedContactList.getItemAtPosition(position);
+                RowItem item = (RowItem) o; //As you are using Default String Adapter
+                Log.i("itemclicked", item.toString());
+                Toast.makeText(getBaseContext(), item.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 
     @Override
@@ -258,7 +274,7 @@ public class MainActivity extends AppCompatActivity
             int photo = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI);
             phoneNo = cursor.getString(phoneIndex);
             name = cursor.getString(nameIndex);
-            photoUri = cursor.getLong(photo);
+            photoUri = cursor.getInt(photo);
 
             saveContact(phoneNo, name, photoUri);
 

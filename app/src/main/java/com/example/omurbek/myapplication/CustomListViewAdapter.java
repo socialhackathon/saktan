@@ -50,7 +50,7 @@ public class CustomListViewAdapter extends ArrayAdapter<RowItem> {
 
         holder.contactName.setText(rowItem.getName());
         holder.contactNumber.setText(rowItem.getPhone());
-//        holder.imageView.setImageResource(Integer.parseInt(rowItem.getImage()));
+    //    holder.imageView.setImageResource(Integer.parseInt(rowItem.getImage()));
         holder.imageView.setImageResource(R.drawable.ic_account_circle_black_24dp);
 
         return convertView;

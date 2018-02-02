@@ -1,6 +1,7 @@
 package com.example.omurbek.myapplication;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -18,13 +19,19 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +43,10 @@ public class MainActivity extends AppCompatActivity
 
     private static final int RESULT_PICK_CONTACT = 4546;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
-    public static final String APP_PREFERENCE_KEY = "SAKTAN_TEAM_5";
     SharedPreferences preferences;
     private ListView selectedContactList;
     List<RowItem> rowItems;
+    DatabaseHandler contactDB = new DatabaseHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,13 +57,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         selectedContactList = (ListView) findViewById(R.id.selectedContactList);
 
-        updateContactList();
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Контакт выбран", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Выберите контакт", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
                 Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
                 intent.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
@@ -74,8 +79,43 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Switch securityAgency = (Switch) findViewById(R.id.security_agency);
+        securityAgency.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Log.i("SECURITY_ENABLED", "TRUE");
+                } else {
+                    Log.i("SECURITY_ENABLED", "FALSE");
+                }
+            }
+        });
+
 //        TODO
-        startService(new Intent(this, SOSService.class));
+        //   startService(new Intent(this, SOSService.class));
+
+//        TODO RETRIEVES CONTACTS FROM SQLITE
+        updateContactList();
+    }
+
+    public void removeSelectedContact(View view) {
+
+        TextView textView = view.findViewById(R.id.myname);
+        Log.i("contact_clicked", String.valueOf(textView.getText()));
+        final String contactName = textView.getText().toString();
+        new AlertDialog.Builder(this)
+                .setTitle("Контакт")
+                .setMessage("Вы хотите удалить " + contactName + " из списка?")
+                .setIcon(android.R.drawable.ic_menu_delete)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        contactDB.deleteContactByName(contactName);
+                        Toast.makeText(MainActivity.this, "Контакт удален", Toast.LENGTH_SHORT).show();
+                        updateContactList();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null).show();
+
     }
 
     @Override
@@ -170,13 +210,11 @@ public class MainActivity extends AppCompatActivity
                             }
                         });
             }
-        }
-        else if(requestCode == 45){
+        } else if (requestCode == 45) {
             if (grantResults.length <= 0) {
                 Log.i(TAG, "User SMS was cancelled.");
             }
         }
-
     }
 
 
@@ -196,35 +234,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void updateContactList() {
-        ArrayList<String> list = new ArrayList<String>();
-        rowItems = new ArrayList<RowItem>();
-        String contacts = preferences.getString(APP_PREFERENCE_KEY, "");
-        if (contacts.length() < 1) return;
-        String[] contactList = contacts.split(",");
-
-        Log.i("updateContactList", contacts);
-
-        for (int i = 0; i < contactList.length; i++) {
-            String[] contact = contactList[i].split("#");
-            Log.i("inarray" + i, contactList[i] + " =>> " + contact[0] + " - " + contact[1] + " -- " + contact[2]);
-            String contactName = contact[0];
-            String contactNumber = contact[1];
-            String photoUri = contact[2];
-            list.add(contactName + " ### " + contactNumber + " photo : " + photoUri);
-            RowItem item = new RowItem(contact[0], contact[1], photoUri);
-            rowItems.add(item);
-        }
-
+        List<Contact> contacts = contactDB.getAllContacts();
         CustomListViewAdapter adapter = new CustomListViewAdapter(this,
-                R.layout.mylistview, rowItems);
+                R.layout.mylistview, contacts);
         selectedContactList.setAdapter(adapter);
-        selectedContactList.setAdapter(adapter);
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("onActivityResult", data.getData().toString());
-        Log.i("onActivityResult", requestCode + "");
         Log.i("onActivityResult", resultCode + "");
         // check whether the result is ok
         if (resultCode == RESULT_OK) {
@@ -258,26 +276,30 @@ public class MainActivity extends AppCompatActivity
             int photo = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI);
             phoneNo = cursor.getString(phoneIndex);
             name = cursor.getString(nameIndex);
-            photoUri = cursor.getLong(photo);
+            photoUri = cursor.getInt(photo);
 
-            saveContact(phoneNo, name, photoUri);
+            saveContactToDB(phoneNo, name, photoUri);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void saveContact(String phoneNo, String name, Long photo) {
-        Log.i("CONTACT", name + " ## " + phoneNo);
-        String phoneNumbers = preferences.getString(APP_PREFERENCE_KEY, "");
+    private void saveContactToDB(String phoneNo, String name, Long photo) {
+        boolean contactExistsInDb = false;
+        List<Contact> contacts = contactDB.getAllContacts();
+        for (Contact cn : contacts) {
+            if (cn.getName().equals(name.trim())) {
+                contactExistsInDb = true;
+                break;
+            }
+        }
 
-        if (phoneNumbers.indexOf(phoneNo) == -1 && phoneNumbers.indexOf(name) == -1) {
-            phoneNumbers = phoneNumbers + name + "#" + phoneNo + "#" + photo + ",";
-            preferences.edit().putString(APP_PREFERENCE_KEY, phoneNumbers).commit();
-            Log.i(APP_PREFERENCE_KEY, phoneNumbers);
-            Log.i("updatecantata", phoneNumbers);
+        if (!contactExistsInDb) {
+            contactDB.addContact(new Contact(name, phoneNo));
             updateContactList();
         }
+
     }
 
     @Override

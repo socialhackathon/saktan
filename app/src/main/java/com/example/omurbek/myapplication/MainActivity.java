@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
         });
 
 //        TODO
-        //   startService(new Intent(this, SOSService.class));
+        startService(new Intent(this, SOSService.class));
 
 //        TODO RETRIEVES CONTACTS FROM SQLITE
         updateContactList();

@@ -19,6 +19,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.List;
+
 /**
  * Created by omurbek on 10/21/2017.
  */
@@ -32,12 +34,10 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
     protected static final long THREE_SEC = 3 * ONE_MILLI;
     protected static final long FOUR_SEC = 4 * ONE_MILLI;
     protected static final long FIVE_SEC = 5 * ONE_MILLI;
-    protected static final int TRIGGER_THRESHOLD = 3;
+    protected static final int TRIGGER_THRESHOLD = 6;
     protected static boolean triggerInProgress = false;
-
+    private DatabaseHandler contactDb;
     public static final String APP_PREFERENCE_KEY = "Jacho_Team";
-
-
     protected static int triggerCounter = 0;
 
     // TODO Locations
@@ -46,11 +46,11 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        contactDb = new DatabaseHandler(context);
         if (intent.getAction().contains(Intent.ACTION_SCREEN_ON)) {
             if (!triggerInProgress) {
                 checkAndCreateAlert(context);
             }
-
         } else if (intent.getAction().contains(Intent.ACTION_SCREEN_OFF)) {
             if (!triggerInProgress) {
                 checkAndCreateAlert(context);
@@ -60,9 +60,8 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
 
     private void checkAndCreateAlert(Context context) {
         Log.i("checkAndCreateAlert", triggerCounter + "");
-        /*---- If the gap between power button press is less than 5 seconds ----*/
-        if ((System.currentTimeMillis() - lastTriggerTime) <= FIVE_SEC
-                || (triggerCounter == 0)) {
+        /*---- If the gap between power button press is less than 2 seconds ----*/
+        if ((System.currentTimeMillis() - lastTriggerTime) <= TWO_SEC || (triggerCounter == 0)) {
             triggerCounter++;
             lastTriggerTime = System.currentTimeMillis();
         } else {
@@ -72,13 +71,11 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
         if (triggerCounter >= TRIGGER_THRESHOLD) {
             triggerInProgress = true;
             Log.i("triggerInProgress", triggerCounter + "");
-
             Toast toast = Toast.makeText(context.getApplicationContext(), "Тревога!!!",
                     Toast.LENGTH_SHORT);
             TextView toastMessage = (TextView) toast.getView().findViewById(android.R.id.message);
             toastMessage.setTextColor(Color.RED);
             toast.show();
-
             getLastLocation(context);
             triggerInProgress = false;
             triggerCounter = 0;
@@ -97,24 +94,17 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
                             String latitude = String.valueOf(mLastLocation.getLatitude());
                             String longitude = String.valueOf(mLastLocation.getLongitude());
 //                            TODO check if sms is working with the location
+                            List<Contact> contactList = contactDb.getAllContacts();
                             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
                             String contacts = preferences.getString(APP_PREFERENCE_KEY, null);
                             Log.i("my_key_key", APP_PREFERENCE_KEY);
-                            if(contacts==null){
-                                Log.i("contacts", " null dsafsdf");
-                            }
-
-                            if (contacts!=null && contacts.length() > 0) {
-                                String[] contactList = contacts.split(",");
-                                for (int i = 0; i < contactList.length; i++) {
-                                    String[] contact = contactList[i].split("#");
-                                    String contactName = contact[0];
-                                    if (contact.length < 2) continue;
-                                    String contactNumber = contact[1];
-//                                    sendSMS(context, contactNumber, latitude, longitude);
-                                }
+                            if (contactList.size() == 0) {
+                                Log.i("contacts", "THERE_IS_NO_CONTACTS");
                             } else {
-                                Log.i("phoneSharedPreferences", "can not read phone number");
+                                for (Contact contact : contactList) {
+                                    Log.i("SEND_SMS", contact.toString());
+                                    sendSMS(context, contact.getPhoneNumber(), latitude, longitude);
+                                }
                             }
                         } else {
                             Log.w("LOCATION_SOS", "getLastLocation:exception", task.getException());
@@ -127,8 +117,8 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
         String msg = "SOS!!!\t" + "http://maps.google.com/?q=" + latitude + "," + longitude;
         try {
             Log.i("sos", msg);
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+//            SmsManager smsManager = SmsManager.getDefault();
+//            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
             Toast.makeText(context.getApplicationContext(), "Отправлено",
                     Toast.LENGTH_LONG).show();
             ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(2000);
@@ -138,5 +128,4 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
             ex.printStackTrace();
         }
     }
-
 }

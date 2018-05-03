@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity
     private static final int RESULT_PICK_CONTACT = 4546;
     private static final int REQUEST_PERMISSIONS_REQUEST_CODE = 34;
     SharedPreferences preferences;
-    private ListView selectedContactList;
     List<RowItem> rowItems;
     DatabaseHandler contactDB = new DatabaseHandler(this);
+    private ListView selectedContactList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -341,11 +341,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, HotLine.class);
+            Intent intent = new Intent(this, ScrollingActivity.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
+            Intent intent = new Intent(this, NeedHelp.class);
+            this.startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 

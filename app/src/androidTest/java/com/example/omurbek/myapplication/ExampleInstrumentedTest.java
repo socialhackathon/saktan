@@ -7,7 +7,8 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -23,4 +24,18 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.example.omurbek.myapplication", appContext.getPackageName());
     }
+
+    @Test
+    public void testContact() throws Exception {
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        Contact me = new Contact("Omurbek", "771333076");
+        DatabaseHandler dbHandler = new DatabaseHandler(appContext);
+        dbHandler.addContact(me);
+        Contact omurbek = dbHandler.getContactByName("Omurbek");
+
+        assertNotEquals(omurbek, null);
+        assertEquals(omurbek.name, "Omurbek");
+    }
+
 }

@@ -82,7 +82,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Contact contact = new Contact(Integer.parseInt(cursor.getString(0)),
                 cursor.getString(1), cursor.getString(2));
-        // return contact
         return contact;
     }
 
@@ -132,6 +131,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public Contact getContactByName(String contactName) {
+        List<Contact> contacts = this.getAllContacts();
+        for (int i = 0; i < contacts.size(); i++) {
+            if (contacts.get(i).name.equals(contactName)) {
+                return contacts.get(i);
+            }
+        }
+        return null;
+    }
+
 
     // Getting contacts Count
     public int getContactsCount() {
@@ -152,4 +161,5 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.omurbek.myapplication;
+package io.jachoteam.omurbek.saktan;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

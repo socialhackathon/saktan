@@ -1,4 +1,4 @@
-package com.example.omurbek.myapplication;
+package io.jachoteam.omurbek.saktan;
 
 /**
  * Created by omurbek on 10/22/2017.

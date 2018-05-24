@@ -1,4 +1,4 @@
-package com.example.omurbek.myapplication;
+package io.jachoteam.omurbek.saktan;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,22 +27,20 @@ import java.util.List;
 
 public class SOSBroadcastReceiver extends BroadcastReceiver {
 
-    private static long lastTriggerTime = 0;
+    public static final String APP_PREFERENCE_KEY = "Jacho_Team";
+    protected static final int TRIGGER_THRESHOLD = 3;
     private static final int ONE_MILLI = 1000;
     protected static final long ONE_SEC = 1 * ONE_MILLI;
     protected static final long TWO_SEC = 2 * ONE_MILLI;
     protected static final long THREE_SEC = 3 * ONE_MILLI;
     protected static final long FOUR_SEC = 4 * ONE_MILLI;
     protected static final long FIVE_SEC = 5 * ONE_MILLI;
-    protected static final int TRIGGER_THRESHOLD = 6;
     protected static boolean triggerInProgress = false;
-    private DatabaseHandler contactDb;
-    public static final String APP_PREFERENCE_KEY = "Jacho_Team";
     protected static int triggerCounter = 0;
-
+    private static long lastTriggerTime = 0;
     // TODO Locations
     protected Location mLastLocation;
-
+    private DatabaseHandler contactDb;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -116,8 +115,8 @@ public class SOSBroadcastReceiver extends BroadcastReceiver {
         String msg = "SOS!!!\t" + "http://maps.google.com/?q=" + latitude + "," + longitude;
         try {
             Log.i("sos", msg);
-//            SmsManager smsManager = SmsManager.getDefault();
-//            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
             Toast.makeText(context.getApplicationContext(), "Отправлено",
                     Toast.LENGTH_LONG).show();
             ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE)).vibrate(2000);

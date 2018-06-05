@@ -30,12 +30,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".HotlineActivityOnly"
+            android:label="@string/title_activity_scrolling" />
+        <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NeedHelp"
             android:label="@string/title_activity_need_help"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".HotlineActivity"
+            android:label="@string/title_activity_hotline"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SecurityAgencyActivity"
+            android:label="@string/title_activity_security_agency"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

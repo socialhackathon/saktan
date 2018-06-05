@@ -7,6 +7,15 @@
     <string name="permission_denied_explanation">Permission was denied, but is needed for core
         functionality.</string>
     <string name="action_settings">Settings</string>
+    <string name="security_text">
+        "Все сотрудники ОсОО «ОДА «Аякс» проходят обязательное обучение и специальную подготовку по программе подготовки и повышения квалификации сотрудников Службы Безопасности, личный состав агентства тщательно проверяется на наличие судимости, психических и наркологических заболеваний.\n"
+        "Наш адрес: г. Бишкек, ул.Токтоналиева ( бывш.Душанбинская) , 91\n"
+    </string>
+    <string name="security_text_contact">
+"Мы рады предложить Вам свои услуги и надеемся на плодотворное сотрудничество!\n"
+"Остаемся в вашем распоряжении!\n"
+"Наш адрес: г. Бишкек, ул.Токтоналиева ( бывш.Душанбинская) , 91\n"
+    </string>
     <string name="settings">Settings</string>
     <string name="title_activity_scrolling">Горячая линия</string>
     <string name="large_text">
@@ -99,5 +108,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_need_help">Справка</string>
+    <string name="title_activity_hotline">HotlineActivity</string>
+    <string name="title_activity_security_agency">Охранное агентсво</string>
 
 </resources>

@@ -339,9 +339,10 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent intent = new Intent(this, SecurityAgencyActivity.class);
+            this.startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, ScrollingActivity.class);
+            Intent intent = new Intent(this, HotlineActivityOnly.class);
             this.startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 

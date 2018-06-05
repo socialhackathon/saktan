@@ -8,14 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class HotlineActivityOnly extends AppCompatActivity {
 
     ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling);
+        setContentView(R.layout.activity_hotline_only);
 
         // Get ListView object from xml
         listView = (ListView) findViewById(R.id.list);

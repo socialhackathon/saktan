@@ -19,93 +19,45 @@
     <string name="settings">Settings</string>
     <string name="title_activity_scrolling">Горячая линия</string>
     <string name="large_text">
-        "Material is the metaphor.\n\n"
+        "<b>Что делать если вымогают деньги?</b>\n\n"
+        "✔ Самостоятельно.
+Оказавшись в поле зрения вымогателей, ни в коем случае не начинайте скандал и не идете на поводу эмоций. Сохраняйте хладнокровие и полное спокойствие, стараясь собрать как можно больше ДОКАЗАТЕЛЬСТВ противоправных действий вымогателя.
 
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
+Если вежливо, но твердо избавиться от вымогателя не удалось, сделайте вид, что согласны на него требования и начинайте тянуть время.
 
-        "Bold, graphic, intentional.\n\n"
+Используйте свидетельские показания, в случае угроз или настойчивых визитов вымогателей домой старайтесь не оставаться в одиночестве.
+Воспользуйтесь аудио- видеозаписью, например, с помощью  диктофона или камеры мобильного телефона записав требования злоумышленника или ваш разговор.
+Если это вымогательство по телефону, например в виде сообщения о том, что ваш родственник попал в беду и вам срочно нужно переслать деньги, изобразите испуг и под любым предлогом вынудите собеседника прервать разговор и перезвонить вам – так вы сможете подготовиться к разговору.
+Постарайтесь найти тех, кто пострадал от этого же лица и заручиться их поддержкой и показаниями – в случае вымогательства в школе, больнице или на работе.
+Ведя аудио- и видеозапись старайтесь строить диалог так, чтобы вымогатель «наболтал» как можно больше – согласовывайте сумму, способ передачи, мелкие детали.
+        Один или два раз можно свести диалог к конфликту, отказавшись платить – ваш собеседник наверняка огласит последствия того, что будет с вами в случае, если вы не дадите денег или же будет прямо угрожать.\n\n"
+"✔ При помощи полиции и органов правопорядка.
+Обратившись с заявлением о вымогательстве в полицию, в ходе оперативных мероприятий сыщики соберут все необходимые доказательства с вашей (или без) помощью. Данный вариант наиболее правильный.
 
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
+ ✔ Куда и как обращаться?
+1. Если имеют место угрозы при вымогательстве вашему здоровью или жизни, вашим близким, у вас вымогают взятку чиновники – то, однозначно, идти стоит исключительно в правоохранительные органы.
 
-        "Motion provides meaning.\n\n"
+А) Став жертвой вымогательства, обращайтесь в отделение полиции с заявлением по месту совершения преступления.
 
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+Б) Обращайтесь в прокуратуру, если сотрудники органов будут чинить вам препятствия в защите своих прав и отказывать в приеме заявления.
 
-        "3D world.\n\n"
+2. Если в роли вымогателей выступают сотрудники правоохранительных органов, и вы опасаетесь  круговой поруки в отделении полиции по месту жительства (особенно в провинции), обращайтесь в службу собственной безопасности Управления внутренних дел города или региона или же в региональный отдел ФСБ.
 
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
+3. В случае вымогательства денег при обстоятельствах явной «подставы» - например, ДТП или, якобы, повреждения чужого имущества – тут же вызывайте полицию, не соглашаясь ни на какие альтернативы. Одного только намерения вызвать полицию будет достаточно, чтобы охладить пыл вымогателей.\n\n\n\n\n"
+        "<b>Что делать, если угрожают убить?</b>\n\n"
+        "<p>Когда вам приходится опасаться за свою жизнь, в первую очередь приходит также страх и опасение за ваших родных и близких.
+        Но не стоит ему поддаваться, ведь именно этого и ждет недоброжелатель. Лучше постараться сохранить хладнокровие и понять, что предпринять дальше. В данной статье мы расскажем, что делать, если угрожают убить. Куда обратиться при угрозе убийством.</p>\n\n\n"
+        "<b>Угрожают по телефону или через другие средства связи</b>\n"
+        "<p>Если вы получили письмо, звонок или смс-сообщение с угрозами в отношении вас, где вам обещают физической расправой, необходимо все максимально зафиксировать.
+        Лучше ставить запись на телефонные разговоры, а позже обращаться к операторам телефонной связи за выпиской поступающих к вам звонков. Далее со всеми документами направляйтесь к своему участковому, и пишите заявление. Просите рассмотреть ваше обращение, следите за законностью его принятия и за законностью дальнейших действий правоохранительного органа.</p>\n\n\n"
 
-        "Light and shadow.\n\n"
+        "<b>Угрожают лично</b>\n"
+        "<p>Вам угрожают физической расправой прямо в лицо? Не мешкаем, стараемся зацепиться за любую деталь внешности, дабы запомнить обидчика. Если вы его знаете, или остерегались угроз ранее, не забудьте о средствах аудио и видеозаписи. Самое простое – диктофон или видеокамера мобильных устройств.
+        Главное, не старайтесь действовать напрямую или вести себя агрессивно. Основное правило – сначала немного сдаться, чтобы уловить время для поиска решения. Сможете записать разговор – очень хорошо. Только чтобы сделать аудиозапись или видеосъемку доказательством, которое получено законным путем, нужно обязательно предупредить вашего оппонента об этом. Об угрозе записи речи не идет, поскольку слова быстро перейдут в действия. Лучше сказать, что разговор записывается, но не указывать напрямую источника. Так, угрожающий может подумать, что вы его проверяете и упустить эту деталь, однако с вашей стороны вы получите законное обоснование вашего опасения за свою жизнь и сможете требовать не только принять заявление на рассмотрение, но и завести уголовное дело в отношении обидчика.</p>\n\n\n\n\n"
 
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+        "<b>Что делать, если вы стали жертвой изнасилования?</b>\n\n\n"
+        "Лучше всего сразу вызвать «скорую». Однако врач не сможет засвидетельствовать факт сексуального насилия — это работа судмедэксперта. После медицинского осмотра собрать доказательства для возбуждения уголовного дела будет гораздо сложнее. В течение 72 часов после случившегося (а лучше в первые четыре) нужно пойти в СПИД-центр и пройти профилактику ВИЧ. Результат станет известен через четыре-шесть месяцев. Также необходимо сразу пройти профилактику венерических заболеваний и через месяц сделать повторные анализы. То же касается нежелательной беременности: на экстренную контрацепцию есть 120 часов.\n\n"
 
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_need_help">Справка</string>
     <string name="title_activity_hotline">HotlineActivity</string>

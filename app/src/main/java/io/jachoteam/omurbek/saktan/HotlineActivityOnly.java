@@ -1,12 +1,15 @@
 package io.jachoteam.omurbek.saktan;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HotlineActivityOnly extends AppCompatActivity {
 
@@ -21,49 +24,32 @@ public class HotlineActivityOnly extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
-        String[] values = new String[]{"Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
+        List<HotlineModel> hotlineModels = new ArrayList<>();
+        hotlineModels.add(new HotlineModel("Пожарная служба", "101"));
+        hotlineModels.add(new HotlineModel("Милиция", "102"));
+        hotlineModels.add(new HotlineModel("Скорая помощь", "103"));
+        hotlineModels.add(new HotlineModel("МЧС", "161"));
+        hotlineModels.add(new HotlineModel("Детская поддержка", "312611552"));
+        hotlineModels.add(new HotlineModel("ГРС", "663605"));
+        hotlineModels.add(new HotlineModel("Социальный фонд", "0312543316"));
 
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
-
+        HotlineListViewAdapter adapter = new HotlineListViewAdapter(this,
+                R.layout.hotline_list, hotlineModels);
 
         // Assign adapter to ListView
         listView.setAdapter(adapter);
 
-        // ListView Item Click Listener
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    }
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+    public void phoneToDialler(View view) {
 
-                // ListView Clicked item index
-                int itemPosition = position;
+        TextView textView = view.findViewById(R.id.myname);
+        TextView phoneView = view.findViewById(R.id.phone);
 
-                // ListView Clicked item value
-                String itemValue = (String) listView.getItemAtPosition(position);
+        String phone = String.valueOf(phoneView.getText());
 
-                // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :" + itemPosition + "  ListItem : " + itemValue, Toast.LENGTH_LONG)
-                        .show();
-
-            }
-
-        });
+        Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.fromParts(
+                "tel", phone, null));
+        startActivity(phoneIntent);
     }
 }

@@ -25,7 +25,7 @@ public class CustomListViewAdapter extends ArrayAdapter<Contact> {
     }
 
     /*private view holder class*/
-    private class ViewHolder {
+    public class ViewHolder {
         ImageView imageView;
         TextView contactNumber;
         TextView contactName;

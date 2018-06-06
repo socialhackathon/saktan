@@ -6,9 +6,7 @@ What problem does he solve? Our application solves the problem of the safety of 
 
 # Screenshots
 
-[Screenshot#1](https://lh3.googleusercontent.com/JHyAI6S0V2J5GruVp0ij40Yn7ZXy71jUPlZ13TV6cdWLB2A27aI0OIqSqGu1igb7v00=w1855-h965-rw "Saktan about")
-
-[About](saktan.webp "Saktan about")
+![Screenshot#1](https://github.com/omurbekjk/sos-safety-app/blob/master/saktan.jpg)
 
 
 # SAKTAN - Полное описание <= RU

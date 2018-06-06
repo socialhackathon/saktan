@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/saktan.iml" filepath="$PROJECT_DIR$/saktan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sos-safety-app.iml" filepath="$PROJECT_DIR$/sos-safety-app.iml" />
     </modules>
   </component>
 </project>

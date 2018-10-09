@@ -1,8 +1,8 @@
 # Full description <= EN
 
-SAKTAN is an SOS emergency call application through the lock button, which can be used in case of an emergency. The user of the service needs to create in advance a list of numbers of "defenders" - relatives or friends, as well as the number of the security agency, which will be notified at the request of the user. The use of SAKTAN functions is free of charge, except for the services of the Security Agency.
+SAKTAN is an SOS emergency call application through the lock button, which can be used in case of an emergency. The user of the service needs to create, in advance, a list of numbers of "defenders" - relatives or friends, as well as the number of the security agency, which will be notified at the request of the user. The use of SAKTAN functions is free of charge, except for the services of the Security Agency.
 
-What problem does he solve? Our application solves the problem of the safety of girls, schoolchildren and students.
+What problem does it solve? Our application solves the problem of the safety of girls, schoolchildren and students.
 
 # Screenshots
 

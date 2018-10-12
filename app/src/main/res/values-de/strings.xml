@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Saktan</string>
+    <string name="navigation_drawer_open">Öffne Navigation in der Seitenleiste</string>
+    <string name="navigation_drawer_close">Schließe Navigation in der Seitenleiste</string>
+    <string name="permission_rationale">Erlaubnis für Standortdienste wird für die Kernfunktionalität benötigt</string>
+    <string name="permission_denied_explanation">Erlaubnis wurde verwehrt, wird aber für die Kernfunktionalität benötigt</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="security_text_contact">Wir freuen uns, Ihnen unsere Dienste anzubieten und auf eine erfolgreiche Zusammenarbeit. Wir stehen Ihnen zu Verfügung. Unsere Adresse: Bishkek, 91 Toktonaliev St</string>
+    <string name="title_activity_scrolling">Telefon</string>
+    <string name="title_activity_need_help">Hilfe</string>
+    <string name="title_activity_hotline">Telefon-Dienstzeiten</string>
+    <string name="title_activity_security_agency">Sicherheitsagentur</string>
+</resources>

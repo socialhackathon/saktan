@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">Saktan</string>
+
+    <string name="navigation_drawer_open">Abrir barra de navegación</string>
+    <string name="navigation_drawer_close">Cerrar barra de navegación</string>
+    <string name="permission_rationale">Se requiere permiso de ubicación para la funcionalidad básica</string>
+    <string name="permission_denied_explanation">Se denegó el permiso, pero es necesario para la funcionalidad básica.</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="security_text">
+        "Todos los empleados de OJA AJAX LLC reciben educación obligatoria y capacitación especial en el programa para la capacitación y el desarrollo profesional de los empleados del Servicio de Seguridad, el personal de la agencia se revisa cuidadosamente en busca de antecedentes penales, enfermedades mentales y narcológicas.\n"
+        "Nuestra dirección: 91 Toktonaliev St. (anteriormente Dushanbinskaya), Bishkek\n"
+    </string>
+    <string name="security_text_contact">
+"Nos complace ofrecerle nuestros servicios y esperamos una fructífera cooperación!\n"
+"Quedamos a su disposición!\n"
+"Nuestra dirección: 91 Toktonaliev St. (anteriormente Dushanbinskaya), Bishkek\n"
+    </string>
+    <string name="settings">Ajustes</string>
+    <string name="title_activity_scrolling">Línea directa</string>
+    <string name="large_text">
+        "<b>¿Qué hacer en caso de extorsión de dinero?</b>\n\n"
+        "✔ Uno mismo.
+
+        Una vez en manos de los extorsionistas, bajo ninguna circunstancia inicie un escándalo ni sea impulsivo. Mantenga la calma, tratando de reunir la mayor cantidad de evidencia posible de las acciones del extorsionista.
+
+        Si no fue posible deshacerse del extorsionador de manera cortés pero firme, simule que está de acuerdo con los requisitos y comience a alargar el tiempo.
+
+        Utilice el testimonio. En caso de amenazas o visitas persistentes de extorsionistas en el hogar, intente no estar solo.
+        Utilice la grabación de audio y video, por ejemplo, utilizando una grabadora de voz o una cámara de teléfono celular, grabando las solicitudes del atacante o su conversación.
+        Si se trata de una extorsión telefónica, por ejemplo, en forma de un mensaje que indica que sus padres están en problemas y que tiene una necesidad urgente de enviar dinero, finja asustarse y, bajo cualquier pretexto, obligar a la otra parte a interrumpir la conversación y volver a llamarlo para preparar la grabación.
+        Trate de encontrar a aquellos que han sufrido de la misma persona y solicite su apoyo y testimonio, en caso de extorsión en la escuela, en el hospital o en el trabajo.
+        Al realizar las grabaciones de audio y video, intente crear un diálogo para que el extorsionador le brinde la mayor cantidad de evidencia posible: acuerde la cantidad, el método de transferencia y los demás detalles.
+        Una o dos veces puede reducir el diálogo al conflicto al negarse a pagar; su interlocutor seguramente anunciará las consecuencias de lo que le sucederá si no da dinero.\n\n"
+        "✔ Con ayuda de la policía o fuerzas del orden.
+        Al contactar a la policía por extorsión, durante sus actividades operativas, los detectives reunirán todas las pruebas necesarias con su ayuda (o sin ella). Esta opción es la más adecuada.
+ ✔ ¿Dónde y cómo contactar?
+1. Si existen amenazas contra su salud o vida, a sus seres queridos y solicitan un soborno para evitarlo, entonces, por supuesto, vale la pena ir exclusivamente a las agencias de aplicación de la ley.
+
+        A) Después de ser víctima de extorsión, comuníquese con la estación de policía con una declaración en la escena del crimen.
+
+        B) Póngase en contacto con la oficina del fiscal si las autoridades le obstruyen para proteger sus derechos y se niegan a aceptar la solicitud.
+
+2. Si los agentes de la ley actúan como extorsionistas y tiene miedo de la complicidad mutua con el departamento de policía de su lugar de residencia (especialmente en las provincias), comuníquese con el servicio de seguridad personal del departamento de asuntos internos de la ciudad o región o el departamento regional de la FSB.
+
+3. En caso de extorsión de dinero en circunstancias de una "situación" obvia, por ejemplo, un accidente o, supuestamente, daños a la propiedad de otros, llame a la policía inmediatamente, sin aceptar ningún otro solución. Solo la intención de llamar a la policía será suficiente para apaciguar a los extorsionistas.\n\n\n\n\n"
+        "<b>¿Qué pasa si se le amenaza de muerte?</b>\n\n"
+        "<p>Cuando tienes que temer por tu vida, primero viene también la preocupación por tu bien y el de tus seres queridos.
+        Pero no cedas ante él, porque esto es exactamente lo que el malhechor está esperando. Es mejor tratar de mantener la calma y comprender qué hacer a continuación. En este artículo le diremos qué hacer si se le amenaza con matar. A dónde acudir en caso de amenazas de muerte.</p>\n\n\n"
+        "<b>Amenaza por teléfono u otro medio de comunicación</b>\n"
+        "<p>Si recibe una carta, llamada o mensaje SMS con amenazas en su contra donde le prometen daños físicos, debe registrar la mayor información posible.
+        Es mejor grabar en conversaciones telefónicas y luego comunicarse con los proveedores de servicios telefónicos para obtener un extracto de las llamadas que le hacen. Luego, con todos los documentos, vaya al oficial de policía de su distrito y escriba una declaración. Solicite revisar su apelación, revisar la legalidad de la misma y la legalidad de acciones posteriores de la agencia de aplicación de la ley.</p>\n\n\n"
+
+        "<b>Amenaza en persona</b>\n"
+        "<p>¿Estás amenazado con un daño físico en la cara? No lo dude. Trate de recordar cualquier detalle de la apariencia para identificar al delincuente. Si lo conoce o desconfió de amenazas anteriores, no olvide los medios de grabación de audio y video. Lo más simple es una grabadora de voz o una cámara de video dispositivos móviles.
+        Lo más importante: no intente actuar directamente o comportarse agresivamente. La regla básica es "dejarse llevar" un poco al principio para tomar el tiempo para encontrar una solución. Puede grabar una conversación, muy bien. Solo para hacer una grabación de audio o evidencia de filmación que se haya obtenido legalmente, necesariamente debe advertir a su oponente sobre esto. No se habla de la amenaza de grabar, ya que las palabras entrarán rápidamente en acción. Es mejor decir que la conversación está  siendo grabada, pero no indique la fuente directamente. Por lo tanto, la persona amenazadora puede pensar que lo está verificando y omite este detalle, pero por su parte obtendrá una justificación legítima de sus temores por su vida y puede exigir no solo aceptar la solicitud para su consideración, sino también abrir un caso penal contra el delincuente.</p>\n\n\n\n\n"
+
+        "<b>¿Qué pasa si eres una víctima de violación?</b>\n\n\n"
+        "Es mejor llamar de inmediato a una ambulancia. Sin embargo, el médico no podrá testificar sobre el hecho de la violencia sexual. Este es el trabajo de un experto forense. Después de un examen médico, la recopilación de pruebas para iniciar un caso penal será mucho más difícil. Dentro de las 72 horas posteriores al incidente (y preferiblemente los primeros cuatro) debe ir aun laboratorio y obtener la profilaxis del VIH. El resultado se conocerá en cuatro a seis meses. También debe obtener de inmediato la profilaxis de la enfermedad de transmisión sexual y volver a realizar las pruebas en un mes. Lo mismo se aplica a los embarazos no deseados: hay 120 horas para el anticonceptivo de emergencia.\n\n"
+    </string>
+    <string name="title_activity_need_help">Ayuda</string>
+    <string name="title_activity_hotline">Horario telefónico</string>
+    <string name="title_activity_security_agency">Agencia de seguridad</string>
+
+</resources>

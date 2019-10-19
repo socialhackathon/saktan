@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Saktan</string>
+
+    <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
+    <string name="navigation_drawer_close">Fermer le tiroir de navigation</string>
+    <string name="permission_rationale">La permission de localisation  est nécessaire pour les fonctionalités de base </string>
+    <string name="permission_denied_explanation">L\'autorisation a été refusée, mais elle est nécessaire pour les fonctionalités de base.</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="security_text">
+        "Tous les employés de ODA Ajax LLC suivent un enseignement obligatoire et suivent une formation spéciale au programme de formation et de perfectionnement du personnel des services de sécurité. Le personnel de l’agence est minutieusement contrôlé en cas de condamnation pénale, de maladie mentale ou de toxicomanie. \n"
+         "Notre adresse: Bichkek, rue Toktonalieva (anciennement Dushanbinskaya), 91\n"
+    </string>
+    <string name="security_text_contact">
+"Nous sommes heureux de vous proposer nos services et espérons une coopération fructueuse! \n"
+"Nous restons à votre disposition! \n"
+"Notre adresse: Bichkek, rue Toktonalieva (anciennement Dushanbinskaya), 91\n"
+    </string>
+    <string name="settings">Paramètres</string>
+    <string name="title_activity_scrolling">Hotline</string>
+    <string name="large_text">
+        "<b>Que faire si extorqué de l'argent?</b>\n\n"
+        "✔ de soi-même.
+Une fois sur le terrain des extorqueurs, en aucun cas ne commencez un scandale et ne continuez pas à parler d\’émotions. Gardez votre calme et une totale tranquillité d\'esprit en essayant de rassembler autant de preuves que possible des actes illégaux de l\'extorqueur.
+
+Si vous ne pouvez pas vous débarrasser de l\'extorqueur poliment, prétendez que vous acceptez ses exigences et commencez à prendre du temps.
+
+Profitez du témoignage, en cas de menaces ou de visites répétées d\'extorqueurs chez vous, essayez de ne pas être seul.
+Utilisez l\'enregistrement audio-vidéo, par exemple à l\'aide d\'un enregistreur vocal ou d\'une caméra de téléphone portable, en enregistrant les demandes de l\'attaquant ou votre conversation.
+S\'il s\'agit d\'une extorsion téléphonique, par exemple, sous la forme d\'un message signalant que votre parent est en difficulté et que vous avez un besoin urgent d\'envoyer de l\'argent, effrayez-vous et, sous quelque prétexte que ce soit, forcez l\'autre partie à interrompre la conversation et à vous rappeler afin de vous préparer à la conversation.
+Essayez de trouver ceux qui ont souffert de la même personne et demandez leur soutien et leur témoignage - en cas d\'extorsion à l\'école, à l\'hôpital ou au travail.
+En effectuant des opérations audio et vidéo, essayez de créer un dialogue afin que l\'extorqueur vous donne des preuves autant que possible - convenez du montant, de la méthode de transfert et des petits détails.
+        Une ou deux fois, vous pouvez réduire le dialogue à un conflit en refusant de payer. Votre interlocuteur vous annoncera certainement les conséquences de ce qui vous arrivera si vous ne donnez pas d\'argent.\n\n"
+"✔ Avec l\'aide de la police et des forces de l\'ordre.
+En contactant la police pour extorsion de fonds, au cours de leurs activités opérationnelles, les détectives rassembleront toutes les preuves nécessaires avec votre aide (ou sans aide). Cette option est la plus juste.
+
+ ✔ Où et comment postuler?
+1. S\'il existe des menaces d\'extorsion de votre santé ou de votre vie, de vos proches, des responsables vous extorquent un pot-de-vin. Alors, clairement, vous ne devriez vous adresser qu\'aux organismes chargés de l\'application de la loi.
+
+А) Si vous êtes victime d\'extorsion, contactez le poste de police avec une déclaration sur le lieu du crime.
+
+Б) Contactez le bureau du procureur si le personnel entrave vos droits et refuse d\'accepter la demande.
+
+2. Si les agents de la force publique agissent comme des ransomwares et que vous craignez une sécurité circulaire au commissariat de police où vous habitez (en particulier dans les provinces), contactez votre propre service de sécurité du service des affaires internes de la ville ou de la région ou le service régional du FSB.
+
+3. En cas d\'extorsion d\'argent dans les circonstances d\'une "configuration" évidente - par exemple, un accident ou, prétendument, un dommage à la propriété d\'autrui - appelez immédiatement la police, sans accepter aucune autre solution. Seule l\’intention d\’appeler la police suffira à apaiser les extorqueurs.\n\n\n\n\n"
+        "<b>Et si on vous menace de vous tuer?</b>\n\n"
+        "<p>Lorsque vous devez craindre pour votre vie, vous devez également notifier et appréhender vos proches.
+        Mais il n\’est pas nécessaire de céder à lui, car c\’est précisément ce que le détracteur attend. Il vaut mieux essayer de rester calme et de savoir quoi faire ensuite. Dans cet article, nous vous dirons quoi faire si vous menacez de tuer. Où aller quand menacé de meurtre.</p>\n\n\n"
+        "<b>Menacé par téléphone ou par d\'autres moyens de communication</b>\n"
+        "<p>Si vous recevez une lettre, un appel ou un SMS avec des menaces contre vous, où la violence physique vous est promise, vous devez tout réparer autant que possible.
+        Il est préférable de mettre un enregistrement sur les conversations téléphoniques et de contacter ultérieurement les opérateurs téléphoniques pour obtenir un extrait des appels qui vous parviennent. En outre, avec tous les documents, rendez-vous à votre bureau et écrivez une déclaration. Demandez à examiner votre appel, contrôler la légalité de son adoption et la légalité des actions ultérieures de l\'organisme chargé de l'application de la loi.</p>\n\n\n"
+
+        "<b>Personnellement menacé</b>\n"
+        "<p>Êtes-vous menacé de violence physique en plein visage? Nous ne tardons pas, nous essayons de nous accrocher à tous les détails de l\'extérieur afin de nous souvenir du contrevenant. Si vous le connaissez ou avez eu peur des menaces plus tôt, n\'oubliez pas les moyens d\'enregistrements audio et vidéo. La chose la plus simple est un enregistreur vocal ou une caméra vidéo pour les appareils mobiles.
+        L\'essentiel est de ne pas essayer d\'agir directement ou de se comporter de manière agressive. La règle de base est d\’abandonner un peu au début pour prendre le temps de trouver une solution. Vous pouvez enregistrer une conversation - très bien. Seulement pour faire un enregistrement audio ou une cassette vidéo avec des preuves obtenues par des moyens légaux, il est nécessaire d\'avertir votre adversaire. Il n\’en va pas de même pour l\’enregistrement de la parole, car les mots entrent rapidement en action. Il vaut mieux dire que la conversation est enregistrée, mais pas indiquer directement la source. Ainsi, une personne menaçante peut penser que vous la vérifiez et omettez ce détail, mais vous recevrez une justification légitime de votre peur pour votre vie et pourrez exiger non seulement que la demande soit acceptée, mais également engager une action pénale contre le contrevenant.</p>\n\n\n\n\n"
+
+        "<b>Et si vous êtes une victime de viol?</b>\n\n\n"
+        "Il est préférable d\'appeler immédiatement une ambulance. Cependant, le médecin ne sera pas en mesure d\'assister au fait de violence sexuelle - c\'est le travail du médecin légiste. Après un examen médical, il sera beaucoup plus difficile de recueillir des preuves pour une affaire pénale. Dans les 72 heures qui suivent (ou au mieux dans les quatre premières), vous devez vous rendre au centre de lutte contre le sida et procéder à la prévention du VIH. Le résultat sera connu dans quatre à six mois. Il est également nécessaire de passer immédiatement à la prévention des maladies sexuellement transmissibles et, dans un mois, de faire des tests répétés. La même chose s\'applique aux grossesses non désirées: il y a 120 heures pour la contraception d\'urgence.\n\n"
+
+    </string>
+    <string name="title_activity_need_help">Aide</string>
+    <string name="title_activity_hotline">Activité Hotline</string>
+    <string name="title_activity_security_agency">Agence de sécurité</string>
+
+</resources>
